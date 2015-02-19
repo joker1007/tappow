@@ -22,5 +22,5 @@ module Tappow
   end
 end
 
-Tapp::Printer.singleton_class.prepend(Tappow::TappExtension)
+Tapp::Printer.singleton_class.__send__ :prepend, Tappow::TappExtension
 Object.__send__ :include, Tappow::ObjectExtension
