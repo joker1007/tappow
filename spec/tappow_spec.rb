@@ -11,13 +11,25 @@ describe Tappow do
   end
 
   describe "Object#tappow" do
-    let(:tappow) { "foo".tappow }
+    describe "logger_pretty" do
+      let(:tappow) { "foo".tappow }
 
-    it {
-      tappow
-      io.rewind
-      expect(io.read).to match(/DEBUG.*"foo"/)
-    }
+      it {
+        tappow
+        io.rewind
+        expect(io.read).to match(/DEBUG.*"foo"/)
+      }
+    end
+
+    describe "logger_awesome" do
+      let(:tappow) { "foo".tappow(:logger_awesome) }
+
+      it {
+        tappow
+        io.rewind
+        expect(io.read).to match(/DEBUG.*33m\"foo\"/)
+      }
+    end
   end
 
   describe "Tapp::Printer extension" do
