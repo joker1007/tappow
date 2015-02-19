@@ -24,10 +24,17 @@ describe Tappow do
     describe "logger_awesome" do
       let(:tappow) { "foo".tappow(:logger_awesome) }
 
+      around do |ex|
+        current_log_level = Tappow.log_level
+        Tappow.log_level = :info
+        ex.run
+        Tappow.log_level = current_log_level
+      end
+
       it {
         tappow
         io.rewind
-        expect(io.read).to match(/DEBUG.*33m\"foo\"/)
+        expect(io.read).to match(/INFO.*33m\"foo\"/)
       }
     end
   end
