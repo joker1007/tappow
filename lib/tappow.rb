@@ -1,9 +1,10 @@
-require 'tappow/printer'
-require 'tappow/tapp_extension'
-require 'tappow/object_extension'
-
 require 'logger'
 require 'tapp'
+
+require 'tappow/object_extension'
+require 'tapp/printer/logger_awesome'
+require 'tapp/printer/logger_pretty'
+require 'tapp/printer/logger_string'
 
 module Tappow
   class << self
@@ -22,5 +23,4 @@ module Tappow
   end
 end
 
-Tapp::Printer.singleton_class.__send__ :prepend, Tappow::TappExtension
 Object.__send__ :include, Tappow::ObjectExtension
